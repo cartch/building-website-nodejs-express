@@ -25,7 +25,10 @@ class SpeakerService {
     const data = await this.getData();
 
     // We are using map() to transform the array we get into another one
-    return data.map((speaker) => ({ name: speaker.name, shortname: speaker.shortname }));
+    return data.map((speaker) => {
+      throw new Error('Async await error');
+      return { name: speaker.name, shortname: speaker.shortname };
+    });
   }
 
   /**
@@ -52,7 +55,9 @@ class SpeakerService {
    */
   async getArtworkForSpeaker(shortname) {
     const data = await this.getData();
-    const speaker = data.find((elm) => elm.shortname === shortname);
+    const speaker = data.find((elm) => {
+      return elm.shortname === shortname;
+    });
     if (!speaker || !speaker.artwork) return null;
     return speaker.artwork;
   }
@@ -63,7 +68,9 @@ class SpeakerService {
    */
   async getSpeaker(shortname) {
     const data = await this.getData();
-    const speaker = data.find((elm) => elm.shortname === shortname);
+    const speaker = data.find((elm) => {
+      return elm.shortname === shortname;
+    });
     if (!speaker) return null;
     return {
       title: speaker.title,
@@ -78,11 +85,13 @@ class SpeakerService {
    */
   async getListShort() {
     const data = await this.getData();
-    return data.map((speaker) => ({
-      name: speaker.name,
-      shortname: speaker.shortname,
-      title: speaker.title,
-    }));
+    return data.map((speaker) => {
+      return {
+        name: speaker.name,
+        shortname: speaker.shortname,
+        title: speaker.title,
+      };
+    });
   }
 
   /**
@@ -90,12 +99,14 @@ class SpeakerService {
    */
   async getList() {
     const data = await this.getData();
-    return data.map((speaker) => ({
-      name: speaker.name,
-      shortname: speaker.shortname,
-      title: speaker.title,
-      summary: speaker.summary,
-    }));
+    return data.map((speaker) => {
+      return {
+        name: speaker.name,
+        shortname: speaker.shortname,
+        title: speaker.title,
+        summary: speaker.summary,
+      };
+    });
   }
 
   /**

@@ -10,7 +10,7 @@ module.exports = (params) => {
   // the / route now points to /speakers because it is mounted to /speakers
   router.get('/', async (request, response) => {
     const speakers = await speakerService.getList();
-    return response.json(speakers);
+    response.render('layout', { pageTitle: 'Speakers', template: 'speakers', speakers });
   });
 
   // route for speaker detail

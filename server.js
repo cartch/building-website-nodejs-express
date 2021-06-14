@@ -5,6 +5,8 @@ const app = express();
 
 const port = 3000;
 
+console.log('restarting');
+
 app.use(express.static(path.join(__dirname, './static')));
 
 app.get('/', (request, response) => {

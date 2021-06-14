@@ -11,7 +11,8 @@ module.exports = (params) => {
 
   router.get('/', async (request, response) => {
     const topSpeakers = await speakerService.getList();
-    response.render('layout', { pageTitle: 'Welcome', template: 'index', topSpeakers });
+    const artwork = await speakerService.getAllArtwork();
+    response.render('layout', { pageTitle: 'Welcome', template: 'index', topSpeakers, artwork });
   });
 
   // mount the subpage routing handlers

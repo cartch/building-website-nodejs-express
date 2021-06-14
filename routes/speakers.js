@@ -10,14 +10,21 @@ module.exports = (params) => {
   // the / route now points to /speakers because it is mounted to /speakers
   router.get('/', async (request, response) => {
     const speakers = await speakerService.getList();
-    response.render('layout', { pageTitle: 'Speakers', template: 'speakers', speakers });
+    const artwork = await speakerService.getAllArtwork();
+    response.render('layout', { pageTitle: 'Speakers', template: 'speakers', speakers, artwork });
   });
 
   // route for speaker detail
   router.get('/:shortname', async (request, response) => {
     const speaker = await speakerService.getSpeaker(request.params.shortname);
-    console.log(speaker);
-    response.render('layout', { pageTitle: 'Speakers', template: 'speakers-detail', speaker });
+    const artwork = await speakerService.getArtworkForSpeaker(request.params.shortname);
+    console.log(artwork);
+    response.render('layout', {
+      pageTitle: 'Speakers',
+      template: 'speakers-detail',
+      speaker,
+      artwork,
+    });
   });
 
   return router;

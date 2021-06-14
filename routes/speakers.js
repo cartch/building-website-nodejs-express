@@ -14,10 +14,9 @@ module.exports = (params) => {
   });
 
   // route for speaker detail
-  // eslint-disable-next-line arrow-body-style
-  router.get('/:shortname', (request, response) => {
-    return response.send(`Detail page of ${request.params.shortname}`);
-  });
+  router.get('/:shortname', (request, response) =>
+    response.send(`Detail page of ${request.params.shortname}`)
+  );
 
   return router;
 };

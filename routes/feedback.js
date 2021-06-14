@@ -11,10 +11,7 @@ module.exports = (params) => {
   });
 
   // route for speaker detail
-  // eslint-disable-next-line arrow-body-style
-  router.post('/', (request, response) => {
-    return response.send('Feedback form posted');
-  });
+  router.post('/', (request, response) => response.send('Feedback form posted'));
 
   return router;
 };

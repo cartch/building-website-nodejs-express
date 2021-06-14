@@ -2,12 +2,16 @@ const express = require('express');
 
 const router = express.Router();
 
-module.exports = () => {
-  router.get('/', (request, response) => {
-    return response.send('Feedback page');
+module.exports = (params) => {
+  const { feedbackService } = params;
+
+  router.get('/', async (request, response) => {
+    const feedback = await feedbackService.getList();
+    return response.json(feedback);
   });
 
   // route for speaker detail
+  // eslint-disable-next-line arrow-body-style
   router.post('/', (request, response) => {
     return response.send('Feedback form posted');
   });

@@ -8,7 +8,7 @@ const router = express.Router();
 
 module.exports = (params) => {
   router.get('/', (request, response) => {
-    response.render('pages/index', { pageTitle: 'Welcome' });
+    response.render('layout', { pageTitle: 'Welcome', template: 'index' });
   });
 
   // mount the subpage routing handlers

@@ -1,19 +1,16 @@
 const express = require('express');
 
-// routing handlers for all subpages
-const speakersRoute = require('./speakers');
-const feedbackRoute = require('./feedback');
-
 const router = express.Router();
 
 module.exports = () => {
   router.get('/', (request, response) => {
-    response.render('pages/index', { pageTitle: 'Welcome' });
+    return response.send('Feedback page');
   });
 
-  // mount the subpage routing handlers
-  router.use('/speakers', speakersRoute());
-  router.use('/feedback', feedbackRoute());
+  // route for speaker detail
+  router.post('/', (request, response) => {
+    return response.send('Feedback form posted');
+  });
 
   return router;
 };

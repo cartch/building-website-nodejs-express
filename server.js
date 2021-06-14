@@ -1,6 +1,8 @@
+/* eslint-disable no-console */
 const express = require('express');
 const path = require('path');
 const cookieSession = require('cookie-session');
+const createError = require('http-errors');
 
 const FeedbackService = require('./services/FeedbackService');
 const SpeakerService = require('./services/SpeakerService');
@@ -49,6 +51,17 @@ app.use(
     speakerService,
   })
 ); // catch all for all routes under /
+
+app.use((request, response, next) => next(createError(404, 'File not found')));
+
+app.use((err, request, response) => {
+  response.locals.message = err.message;
+  console.error(err);
+  const status = err.status || 500;
+  response.locals.status = status;
+  response.status(status);
+  response.render('error');
+});
 
 app.listen(port, () => {
   console.log(`Express server listening on port ${port}`);

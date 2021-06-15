@@ -1,0 +1,9 @@
+POST http://localhost:3000/feedback/api
+content-type: application/json
+
+{
+  "name": "Stephen",
+  "email": "test@test.com",
+  "title": "REST Title",
+  "message": "This was sent via rest"
+}
